@@ -1,6 +1,5 @@
 package Final_Project;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -17,8 +16,6 @@ public class RunGame {
         Button btn = new Button("Run Game -> End Menu");
         btn.setOnAction(e -> sceneDone());
         root.getChildren().add(btn);
-
-
 
         // *************************************************************************************************************
         // NOTE: sceneDone() must be called if you want your scene to end properly

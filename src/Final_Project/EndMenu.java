@@ -22,8 +22,6 @@ public class EndMenu {
         root.getChildren().add(btn);
         root.getChildren().add(btnQuit);
 
-        Main.INPUT.nextLine();
-
         // *************************************************************************************************************
         // NOTE: sceneDone() must be called if you want your scene to end properly
 
