@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 public class EndMenu {
     public static boolean DONE = false;
     public static boolean userQuit;
+
+    /** {@code main} Declares JavaFX objects, giving them functionality and style
+     * For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
     public static void main() {
         GridPane root = new GridPane();
 
@@ -30,17 +33,19 @@ public class EndMenu {
         finish(Main.STAGE, root);
     }
 
-    /** You do not need to touch this method **/
+    /** {@code finish} completes the JavaFX scene, sets the scene to the stage **/
     private static void finish(Stage stage, GridPane root) {
         // Creating the scene
         Scene scene = new Scene(root, Main.WIDTH, Main.HEIGHT);
         stage.setScene(scene);
     }
 
-    private static void sceneDone(boolean quitGame) {
+    /** {@code sceneDone} allows the program to exit gracefully if the user decides to quit the game **/
+    private static void sceneDone(boolean quitApp) {
         DONE = true;
         // Allowing the scenes to repeat if the user didn't ask to quit
-        if (!quitGame) {
+        if (!quitApp) {
+            // resetting, and going back to the Main Menu
             Main.resetScenes();
         } else {
             userQuit = true;
