@@ -12,13 +12,15 @@ public class EndMenu {
         GridPane root = new GridPane();
 
         // ***********************************************YOUR*CODE*HERE************************************************
-
+        // These buttons are for the Demo; replace them when needed
         Button btn = new Button("End Menu -> Main Menu");
         Button btnQuit = new Button("End Program");
 
+        // Assigning the buttons a function
         btn.setOnAction(e -> sceneDone(false));
         btnQuit.setOnAction(e -> sceneDone(true));
 
+        // Adding the buttons to the scene (root)
         root.getChildren().add(btn);
         root.getChildren().add(btnQuit);
 

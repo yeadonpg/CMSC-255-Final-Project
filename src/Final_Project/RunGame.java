@@ -12,9 +12,13 @@ public class RunGame {
         GridPane root = new GridPane();
 
         // ***********************************************YOUR*CODE*HERE************************************************
-
+        // This button is for the Demo; replace it when needed
         Button btn = new Button("Run Game -> End Menu");
+
+        // Assigning the button a function
         btn.setOnAction(e -> sceneDone());
+
+        // Adding the button to the scene (root)
         root.getChildren().add(btn);
 
         // *************************************************************************************************************
