@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @version TODO
  * @since TODO
  *  **/
-public class Main extends Application{
+public class Main extends Application {
 
     /** Declaring package-wide variables **/
     public static int WIDTH = 800;
@@ -77,9 +77,7 @@ public class Main extends Application{
                         if (EndMenu.DONE) {
                             userQuit = EndMenu.userQuit;
                         }
-                        userQuit = RunGame.userQuit;
                     }
-                    userQuit = MainMenu.userQuit;
                 }
                 if (userQuit) {
                     stage.close();

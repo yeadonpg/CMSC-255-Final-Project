@@ -20,7 +20,7 @@ public class RunGame {
         Button btn = new Button("Run Game -> End Menu");
 
         // Assigning the button a function
-        btn.setOnAction(e -> sceneDone(false));
+        btn.setOnAction(e -> sceneDone());
 
         // Adding the button to the scene (root)
         root.getChildren().add(btn);
@@ -39,14 +39,7 @@ public class RunGame {
     }
 
     /** {@code sceneDone} allows the program to exit gracefully if the user decides to quit the game **/
-    private static void sceneDone(boolean quitApp) {
+    private static void sceneDone() {
         DONE = true;
-        // Allowing the scenes to repeat if the user didn't ask to quit
-        if (!quitApp) {
-            // resetting, and going back to the Main Menu
-            Main.resetScenes();
-        } else {
-            userQuit = true;
-        }
     }
 }
