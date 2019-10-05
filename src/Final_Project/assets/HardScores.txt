@@ -1,0 +1,13 @@
+TestUser 5614,2,56.0
+TestUser 9114,2,73.0
+TestUser 8670,2,52.0
+TestUser 3660,2,60.0
+TestUser 9735,2,59.0
+TestUser 4547,2,95.0
+TestUser 9490,2,22.0
+TestUser 7779,2,14.0
+TestUser 5612,2,75.0
+TestUser 4137,2,38.0
+TestUser 2604,2,13.0
+TestUser 3456,2,86.0
+TestUser 7789,2,10.0

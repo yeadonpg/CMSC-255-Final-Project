@@ -14,21 +14,22 @@ public class MainMenu {
      * For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
     public static void main() {
         GridPane root = new GridPane();
+        Button btn = new Button("Main Menu -> Run Game");
+        btn.setOnAction(e -> sceneDone());
+        root.getChildren().add(btn);
 
         // ***********************************************YOUR*CODE*HERE************************************************
-        // This button is for the Demo; replace it when needed
-        Button btn = new Button("Main Menu -> Run Game");
-
-        // Assigning the button a function
-        btn.setOnAction(e -> sceneDone());
-
-        // Adding the button to the scene (root)
-        root.getChildren().add(btn);
+        // DEMO - REPLACE THIS WITH YOUR OWN CODE
+        System.out.println("[Main Menu] DEMO - Press Enter to Continue");
+        Main.INPUT.nextLine();
+        userDifficulty = (int) (Math.random() * 3);
+        userName = "TestUser " + (int) (1000 + Math.random() * 9000);
 
         // *************************************************************************************************************
         // NOTE: sceneDone() must be called if you want your scene to end properly
 
-        finish(Main.STAGE, root);
+        // TODO Uncomment this line when ready to move away from console
+        // finish(Main.STAGE, root);
     }
 
     /** {@code finish} completes the JavaFX scene, sets the scene to the stage **/
