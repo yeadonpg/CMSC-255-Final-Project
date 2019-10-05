@@ -19,28 +19,32 @@ import java.util.Scanner;
 @SuppressWarnings("WeakerAccess")
 public class Main extends Application {
 
-    /** Declaring package-wide variables **/
+    /** Width of every scene in the application **/
     public static int WIDTH = 800;
+    /** Height of every scene in the application **/
     public static int HEIGHT = 600;
+    /** <h1>Package-wide stage for scenes</h1>
+     * This will be used for staging every scene in the package **/
     public static Stage STAGE;
 
-    /** Scanner will be removed eventually; after the game has been moved away from the console **/
+    /** <h1>USE THIS FOR GETTING USER INPUT</h1>
+     * Scanner will be removed eventually; after the game has been moved away from the console **/
     public static Scanner INPUT = new Scanner(System.in);
 
-    /** userDifficulty, and userName are given a value during the MainMenu scene **/
-    public static int userDifficulty;
-    public static String userName;
+    /** Will be given a value after the MainMenu completes **/
+    private static int userDifficulty;
+    /** Will be given a value after the MainMenu completes **/
+    private static String userName;
 
     /** userScore is given a value during the RunGame scene **/
-    public static double userScore;
+    private static double userScore;
 
     /** userQuit can be given a value during any scene, to quit the application instantly **/
-    public static boolean userQuit;
+    private static boolean userQuit;
 
     /** Keeping track of which scenes have been completed, allowing for scenes to be shown in chronological order **/
-    public static boolean[] firstTimeScene = {true, true, true};
+    private static boolean[] firstTimeScene = {true, true, true};
 
-    /** Paths where high scores will be stored **/
     private static String EASY_FILE_PATH = "src/Final_Project/assets/EasyScores.txt";
     private static String INTERMEDIATE_FILE_PATH = "src/Final_Project/assets/IntermediateScores.txt";
     private static String HARD_FILE_PATH = "src/Final_Project/assets/HardScores.txt";
@@ -94,7 +98,7 @@ public class Main extends Application {
         }; //.start();
         // stage.show();
         // -------TODO-When-ready-to-move-away-from-console,-remove-the-above-comments,-and-remove-the-code-below-------
-        // Handling console scenes in a manner that allows them to complete chronologically
+        // Console scenes automatically complete chronologically
         while (!EndMenu.userQuit) {
             MainMenu.main();
             userName = MainMenu.userName;
