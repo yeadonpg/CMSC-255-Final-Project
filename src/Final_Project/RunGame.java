@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 
 public class RunGame {
     public static boolean DONE = false;
-    public static boolean userQuit;
     public static double userScore;
 
     /** {@code main} Declares JavaFX objects, giving them functionality and style

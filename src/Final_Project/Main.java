@@ -14,6 +14,7 @@ import java.util.Scanner;
  * @version TODO
  * @since TODO
  *  **/
+@SuppressWarnings("WeakerAccess")
 public class Main extends Application {
 
     /** Declaring package-wide variables **/

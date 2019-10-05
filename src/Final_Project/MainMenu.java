@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 
 public class MainMenu {
     public static boolean DONE = false;
-    public static boolean userQuit;
     public static String userName;
     public static int userDifficulty;
 
