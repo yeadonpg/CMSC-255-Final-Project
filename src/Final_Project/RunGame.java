@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class RunGame {
     public static boolean DONE = false;
-    public static double userScore;
+    public static double userScore = -1;
 
     /** {@code main} Declares JavaFX objects, giving them functionality and style
      * For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
@@ -21,7 +21,6 @@ public class RunGame {
         // DEMO - REPLACE THIS WITH YOUR OWN CODE
         System.out.println("[Run Game] DEMO - Press Enter to Continue");
         Main.INPUT.nextLine();
-        userScore = (int) (Math.random() * 100);
 
         // *************************************************************************************************************
         // NOTE: sceneDone() must be called if you want your scene to end properly

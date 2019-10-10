@@ -23,6 +23,17 @@ public class EndMenu {
         // ***********************************************YOUR*CODE*HERE************************************************
         // DEMO - REPLACE THIS WITH YOUR OWN CODE
         System.out.println("[End Menu] DEMO");
+
+        // Example of reading scores from the files
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 3; j++) {
+                String[] line = Main.readLineFromFile(j, i);
+                double score = Double.parseDouble(line[2]);
+                System.out.printf("| %s: %.1f |", line[0], score);
+            }
+            System.out.println();
+        }
+
         System.out.println("Enter \"quit\" to quit, to replay press Enter");
         String quitAnswer = Main.INPUT.nextLine();
         if (quitAnswer.trim().equalsIgnoreCase("quit")) {

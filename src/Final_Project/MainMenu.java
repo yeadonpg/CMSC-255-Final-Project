@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class MainMenu {
     public static boolean DONE = false;
     public static String userName;
-    public static int userDifficulty;
+    public static int userDifficulty = -1;
 
     /** {@code main} Declares JavaFX objects, giving them functionality and style
      * For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
@@ -22,8 +22,6 @@ public class MainMenu {
         // DEMO - REPLACE THIS WITH YOUR OWN CODE
         System.out.println("[Main Menu] DEMO - Press Enter to Continue");
         Main.INPUT.nextLine();
-        userDifficulty = (int) (Math.random() * 3);
-        userName = "TestUser " + (int) (1000 + Math.random() * 9000);
 
         // *************************************************************************************************************
         // NOTE: sceneDone() must be called if you want your scene to end properly

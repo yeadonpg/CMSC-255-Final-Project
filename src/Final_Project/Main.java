@@ -105,7 +105,9 @@ public class Main extends Application {
             userDifficulty = MainMenu.userDifficulty;
             RunGame.main();
             userScore = RunGame.userScore;
-            storeToFile(userName, userDifficulty, userScore);
+            if (userName != null && userDifficulty != -1 && userScore != -1) {
+                storeToFile(userName, userDifficulty, userScore);
+            }
             EndMenu.main();
         }
         System.exit(0);
