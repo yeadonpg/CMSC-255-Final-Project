@@ -34,6 +34,7 @@ public class EndMenu {
             }
             System.out.println();
         }
+        System.out.println("|------------------------------------------------------------------|");
 
         System.out.println("Enter \"quit\" to quit, to replay press Enter");
         String quitAnswer = Main.INPUT.nextLine();
