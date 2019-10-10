@@ -182,10 +182,14 @@ public class Main extends Application {
             numMoves = 0;
             for (int i = 0; i < lines.length; i++) {
                 if (!(i + 1 >= lines.length)) {
+                    // Parsing file lines to get the score
                     String[] splitLine1 = lines[i].split(",");
                     String[] splitLine2 = lines[i + 1].split(",");
                     double score1 = Double.parseDouble(splitLine1[2]);
                     double score2 = Double.parseDouble(splitLine2[2]);
+
+                    // Comparing scores for sorting
+                    // Sorting greatest-to-least, in this case
                     if (score2 > score1) {
                         numMoves++;
                         String newLine1 = splitLine2[0] + "," + splitLine2[1] + "," + splitLine2[2];
