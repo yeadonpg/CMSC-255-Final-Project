@@ -25,6 +25,7 @@ public class EndMenu {
         System.out.println("[End Menu] DEMO");
 
         // Example of reading scores from the files
+        System.out.println("|--------Easy--------||-----Intermediate-----||--------Hard--------|");
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 3; j++) {
                 String[] line = Main.readLineFromFile(j, i);
