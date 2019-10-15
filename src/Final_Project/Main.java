@@ -111,7 +111,6 @@ public class Main extends Application {
             EndMenu.main();
         }
         System.exit(0);
-        // this is a change
     }
 
     /** {@code resetScenes} Resets the scenes; effectively returning the user back to the Main Menu **/
