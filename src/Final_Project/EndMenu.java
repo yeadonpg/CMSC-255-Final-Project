@@ -10,8 +10,9 @@ public class EndMenu {
     public static boolean userQuit;
 
     /** {@code main} Declares JavaFX objects, giving them functionality and style
-     * For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
+     * - For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
     public static void main() {
+        // DEMO - REPLACE WITH YOUR OWN CODE
         GridPane root = new GridPane();
         Button btn = new Button("End Menu -> Main Menu");
         Button btnQuit = new Button("End Program");

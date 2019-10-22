@@ -56,7 +56,7 @@ public class Main extends Application {
 
     /** {@code start} Contains the main loop; handles scene switching **/
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage){
         // Giving the package-wide STAGE a value; it will be referenced by all scenes contained in the window
         STAGE = stage;
 
@@ -122,7 +122,7 @@ public class Main extends Application {
     }
 
     /** {@code storeToFile} Stores username and score in HIGH_SCORES_FILE_PATH **/
-    private static void storeToFile(String userName, int userDifficulty, double userScore) {
+    public static void storeToFile(String userName, int userDifficulty, double userScore) {
         String csv = "\n" + userName + "," + userDifficulty + "," + userScore;
         String fileName;
         switch (userDifficulty) {
@@ -150,6 +150,7 @@ public class Main extends Application {
             e.printStackTrace();
         } finally {
             try {
+                assert os != null;
                 os.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -158,7 +159,7 @@ public class Main extends Application {
     }
 
     /** {@code readEntireFile} returns the file as a sorted list of strings, one string for each line **/
-    private static String[] readEntireFile(String fileName) {
+    public static String[] readEntireFile(String fileName) {
         String[] lines = new String[0];
         try {
             Scanner reader = new Scanner(new File(fileName));

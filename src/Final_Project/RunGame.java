@@ -10,8 +10,9 @@ public class RunGame {
     public static double userScore = -1;
 
     /** {@code main} Declares JavaFX objects, giving them functionality and style
-     * For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
+     * - For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
     public static void main() {
+        // DEMO - REPLACE WITH YOUR OWN CODE
         GridPane root = new GridPane();
         Button btn = new Button("Run Game -> End Menu");
         btn.setOnAction(e -> sceneDone());
@@ -36,7 +37,7 @@ public class RunGame {
         stage.setScene(scene);
     }
 
-    /** {@code sceneDone} allows the program to exit gracefully if the user decides to quit the game **/
+    /** {@code sceneDone} allows the scene handler to move onward to the next scene **/
     private static void sceneDone() {
         DONE = true;
     }
