@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 public class RunGame {
     public static boolean DONE = false;
+    // userScore should be set to a valid number greater than or equal to 0
+    // Failure to set userScore will result in the score not being saved
     public static double userScore = -1;
 
     /** {@code main} Declares JavaFX objects, giving them functionality and style
@@ -21,6 +23,8 @@ public class RunGame {
         // ***********************************************YOUR*CODE*HERE************************************************
         // DEMO - REPLACE THIS WITH YOUR OWN CODE
         System.out.println("[Run Game] DEMO - Press Enter to Continue");
+        // Using Main.INPUT as a project-wide scanner, using more than one scanner in a program can result in an error
+        // In this case, INPUT.nextLine() is used to pause the program until the user presses Enter
         Main.INPUT.nextLine();
 
         // *************************************************************************************************************

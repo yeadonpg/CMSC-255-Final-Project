@@ -100,16 +100,28 @@ public class Main extends Application {
         // -------TODO-When-ready-to-move-away-from-console,-remove-the-above-comments,-and-remove-the-code-below-------
         // Console scenes automatically complete chronologically
         while (!EndMenu.userQuit) {
+            // Starting the main menu
             MainMenu.main();
+            // Getting stored values from the main menu
             userName = MainMenu.userName;
             userDifficulty = MainMenu.userDifficulty;
+
+            // Starting the game
             RunGame.main();
+            // Getting the stored value from the game
             userScore = RunGame.userScore;
+
             if (userName != null && userDifficulty != -1 && userScore != -1) {
+                // If the user-entered values aren't default values, store to file
+                // The correct filename is automatically chosen based on the difficulty
+                // If the difficulty is invalid, the score and username will be stored under the default difficulty
                 storeToFile(userName, userDifficulty, userScore);
             }
+
+            // Starting the end menu
             EndMenu.main();
         }
+        // When the loop ends, the program will exit
         System.exit(0);
     }
 

@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 public class MainMenu {
     public static boolean DONE = false;
+
+    // userName and userDifficulty are currently set to default values: null, and -1 respectively
+    // userName must be set to a string, entered by the user
+    // userDifficulty must be set by the user to a valid number between 0 and 2, inclusively
     public static String userName;
     public static int userDifficulty = -1;
 
@@ -22,6 +26,8 @@ public class MainMenu {
         // ***********************************************YOUR*CODE*HERE************************************************
         // DEMO - REPLACE THIS WITH YOUR OWN CODE
         System.out.println("[Main Menu] DEMO - Press Enter to Continue");
+        // Using Main.INPUT as a project-wide scanner, using more than one scanner in a program can result in an error
+        // In this case, Main.INPUT.nextLine() is used to pause the program until the user presses Enter
         Main.INPUT.nextLine();
 
         // *************************************************************************************************************
