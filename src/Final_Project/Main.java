@@ -183,7 +183,11 @@ public class Main extends Application {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return sortByScore(lines);
+        if (fileName.equals(EASY_FILE_PATH) || fileName.equals(INTERMEDIATE_FILE_PATH) || fileName.equals(HARD_FILE_PATH)) {
+            return sortByScore(lines);
+        } else {
+            return lines;
+        }
     }
 
     /** {@code sortByScore} returns a sorted version of the lines given to it
@@ -230,7 +234,13 @@ public class Main extends Application {
                 fileName = EASY_FILE_PATH;
                 break;
         }
+        String line = readLineFromFile(fileName, index);
+        return line.split(",");
+    }
+
+    /** {@code readLineFromFile} Returns the string at a given index in the given filename **/
+    public static String readLineFromFile(String fileName, int index) {
         String[] lines = readEntireFile(fileName);
-        return lines[index].split(",");
+        return lines[index];
     }
 }
