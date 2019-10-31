@@ -28,6 +28,7 @@ public class MainMenu {
         System.out.println("[Main Menu] DEMO - Press Enter to Continue");
         // Using Main.INPUT as a project-wide scanner, using more than one scanner in a program can result in an error
         // In this case, Main.INPUT.nextLine() is used to pause the program until the user presses Enter
+        userDifficulty = 2;
         Main.INPUT.nextLine();
 
         // *************************************************************************************************************

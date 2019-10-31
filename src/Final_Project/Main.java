@@ -75,7 +75,7 @@ public class Main extends Application {
                     userName = MainMenu.userName;
                     if (firstTimeScene[1]) {
                         System.out.println("[DEBUG] Starting Run Game");
-                        RunGame.main();
+                        RunGame.main(userDifficulty);
                         firstTimeScene[1] = false;
                     }
                     if (RunGame.DONE) {
@@ -107,7 +107,7 @@ public class Main extends Application {
             userDifficulty = MainMenu.userDifficulty;
 
             // Starting the game
-            RunGame.main();
+            RunGame.main(userDifficulty);
             // Getting the stored value from the game
             userScore = RunGame.userScore;
 
