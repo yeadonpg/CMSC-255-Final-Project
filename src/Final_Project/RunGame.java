@@ -87,7 +87,7 @@ public class RunGame {
         float userWPM = wordsPerMin(numWords, timeTakenSeconds);
 
         // Calculating score based on accuracy and words per minute
-        float userScore = userWPM * userAccuracy;
+        userScore = userWPM * userAccuracy;
 
         // Printing calculated statistics and final score
         System.out.println("\nFinished!");
@@ -95,14 +95,16 @@ public class RunGame {
         System.out.println("Accuracy: " + userAccuracy * 100 + "%");
         System.out.printf("Your WPM is: %.2f w/m\n", userWPM);
         System.out.printf("Final Score: %.2f (WPM x Accuracy)\n", userScore);
+        System.out.println("Press Enter to view High Scores:");
 
         Main.INPUT.nextLine();
 
         // *************************************************************************************************************
         // NOTE: sceneDone() must be called if you want your scene to end properly
 
-        // TODO Uncomment this line when ready to move away from console
-        // finish(Main.STAGE, root);
+        if (!Main.runConsole) {
+            finish(Main.STAGE, root);
+        }
     }
 
     public static float percentCorrect(String challengeString, String userString) {

@@ -61,7 +61,19 @@ public class MainMenu {
 
         // DEMO - REPLACE THIS WITH YOUR OWN CODE
 
-        System.out.println("[Main Menu] DEMO - Press Enter to Continue");
+        System.out.println("[Typing Contest]");
+        System.out.print("Enter your username: ");
+        userName = Main.INPUT.nextLine();
+        boolean validDifficulty = false;
+        while (!validDifficulty) {
+            System.out.print("Enter the difficulty: (0 - Easy, 1 - Intermediate, 2 - Hard): ");
+            userDifficulty = Main.INPUT.nextInt();
+            Main.INPUT.nextLine();
+            if (userDifficulty >= 0 && userDifficulty <= 2) {
+                validDifficulty = true;
+            }
+        }
+        System.out.println("Press Enter to continue to the game:");
 
         // Using Main.INPUT as a project-wide scanner, using more than one scanner in a program can result in an error
 
@@ -69,17 +81,12 @@ public class MainMenu {
 
         Main.INPUT.nextLine();
 
-
-
         // *************************************************************************************************************
-
         // NOTE: sceneDone() must be called if you want your scene to end properly
 
-
-
-        // TODO Uncomment this line when ready to move away from console
-
-        // finish(Main.STAGE, root);
+        if (!Main.runConsole) {
+            finish(Main.STAGE, root);
+        }
 
     }
 
@@ -128,6 +135,8 @@ public class MainMenu {
                 userDifficulty = 2;
             }
         });
+
+        root.getChildren().add(pane);
 
         Scene scene = new Scene(root, Main.WIDTH, Main.HEIGHT);
 

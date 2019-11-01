@@ -22,10 +22,6 @@ public class EndMenu {
         root.getChildren().add(btnQuit);
 
         // ***********************************************YOUR*CODE*HERE************************************************
-        // DEMO - REPLACE THIS WITH YOUR OWN CODE
-        System.out.println("[End Menu] DEMO");
-
-        // Example of reading scores from the files
         System.out.println("|--------Easy--------||-----Intermediate-----||--------Hard--------|");
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 3; j++) {
@@ -34,7 +30,7 @@ public class EndMenu {
                 // Line format: [0] = Username, [1] = Difficulty, [2] = Score
                 double score = Double.parseDouble(line[2]);
                 // Using print formatting to create a nice looking output
-                System.out.printf("| %s: %.1f |", line[0], score);
+                System.out.printf("| %s: %.2f |", line[0], score);
             }
             System.out.println();
         }
@@ -51,8 +47,9 @@ public class EndMenu {
         // *************************************************************************************************************
         // NOTE: sceneDone() must be called if you want your scene to end properly
 
-        // TODO Uncomment this line when ready to move away from console
-        // finish(Main.STAGE, root);
+        if (!Main.runConsole) {
+            finish(Main.STAGE, root);
+        }
     }
 
     /** {@code finish} completes the JavaFX scene, sets the scene to the stage **/

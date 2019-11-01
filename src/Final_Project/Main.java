@@ -19,6 +19,10 @@ import java.util.Scanner;
 @SuppressWarnings("WeakerAccess")
 public class Main extends Application {
 
+    /** Whether to run the game in the console, or the in the GUI **/
+    // TODO Change to false when ready to switch over to GUI
+    public static boolean runConsole = true;
+
     /** Width of every scene in the application **/
     public static int WIDTH = 800;
     /** Height of every scene in the application **/
@@ -60,7 +64,7 @@ public class Main extends Application {
         // Giving the package-wide STAGE a value; it will be referenced by all scenes contained in the window
         STAGE = stage;
 
-        new AnimationTimer () {
+        AnimationTimer GuiHandler = new AnimationTimer () {
             @Override
             public void handle(long cNT) {
                 // Handling scenes in a manner that allows them to complete chronologically
@@ -95,11 +99,14 @@ public class Main extends Application {
                     stage.close();
                 }
             }
-        }; //.start();
-        // stage.show();
-        // -------TODO-When-ready-to-move-away-from-console,-remove-the-above-comments,-and-remove-the-code-below-------
+        };
+        if (!runConsole) {
+            GuiHandler.start();
+            stage.show();
+        }
+        // TODO Remove the code below when ready to switch over to GUI
         // Console scenes automatically complete chronologically
-        while (!EndMenu.userQuit) {
+        while (!EndMenu.userQuit && runConsole) {
             // Starting the main menu
             MainMenu.main();
             // Getting stored values from the main menu
