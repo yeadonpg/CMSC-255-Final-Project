@@ -73,12 +73,10 @@ public class MainMenu {
                 validDifficulty = true;
             }
         }
-        System.out.println("Press Enter to continue to the game:");
+        System.out.println("Press Enter to Continue:");
 
         // Using Main.INPUT as a project-wide scanner, using more than one scanner in a program can result in an error
-
         // In this case, Main.INPUT.nextLine() is used to pause the program until the user presses Enter
-
         Main.INPUT.nextLine();
 
         // *************************************************************************************************************

@@ -94,9 +94,15 @@ public class RunGame {
         System.out.printf("Time Elapsed: %.2fs\n", timeTakenSeconds);
         System.out.println("Accuracy: " + userAccuracy * 100 + "%");
         System.out.printf("Your WPM is: %.2f w/m\n", userWPM);
-        System.out.printf("Final Score: %.2f (WPM x Accuracy)\n", userScore);
-        System.out.println("Press Enter to view High Scores:");
+        System.out.printf("Final Score: %.2f (WPM x Accuracy)\n\n", userScore);
 
+        System.out.print("Do you want to save your score? (y/n): ");
+        String userChoice = Main.INPUT.nextLine();
+        if (userChoice.equalsIgnoreCase("n")) {
+            userScore = -1;
+        }
+
+        System.out.println("Press Enter to Continue:");
         Main.INPUT.nextLine();
 
         // *************************************************************************************************************
