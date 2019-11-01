@@ -80,7 +80,7 @@ public class MainMenu {
         Main.INPUT.nextLine();
 
         // *************************************************************************************************************
-        // NOTE: sceneDone() must be called if you want your scene to end properly
+        // NOTE: sceneDone() must be called if you want your JavaFX scene to end properly
 
         if (!Main.runConsole) {
             finish(Main.STAGE, root);
