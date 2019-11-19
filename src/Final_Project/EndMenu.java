@@ -21,7 +21,7 @@ public class EndMenu {
         root.getChildren().add(btnRestart);
         root.getChildren().add(btnQuit);
 
-        System.out.println("                             \"Typing Contest\"                          ");
+        System.out.println("                             \n\"Typing Contest\"                          ");
         System.out.println("                                Best Scores:                            ");
         System.out.println("|----------Easy----------||------Intermediate------||----------Hard----------|");
         for (int i = 0; i < 10; i++) {

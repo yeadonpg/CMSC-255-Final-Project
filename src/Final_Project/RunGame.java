@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+
 public class RunGame {
     public static boolean DONE = false;
     // userScore should be set to a valid number greater than or equal to 0
@@ -20,14 +22,32 @@ public class RunGame {
         btn.setOnAction(e -> sceneDone());
         root.getChildren().add(btn);
 
-        // ***********************************************YOUR*CODE*HERE************************************************
-        // Declaring the file path that the dictionary.txt is stored at:
+        // Declaring the file path that of text file is stored at:
         String fileName = "src/Final_Project/assets/dictionary.txt";
 
         // Using pre-made method that I made in the Main class
         // Returns a String array, each String contains one line of the txt file
         // Each line in the file contains a singular word, so I can randomly choose from this list of words
-        String[] dictionary = Main.readEntireFile(fileName);
+
+        int startIndex = 0;
+        int endIndex;
+
+        switch (userDifficulty) {
+            case 1:
+                // Intermediate Range of Dictionary
+                endIndex = 287;
+                break;
+            case 2:
+                // Hard Range of Dictionary
+                endIndex = 337;
+                break;
+            default:
+                // Easy Range of Dictionary
+                endIndex = 255;
+                break;
+        }
+
+        String[] dictionary = Arrays.copyOfRange(Main.readEntireFile(fileName), startIndex, endIndex);
 
         StringBuilder challengeStringBuilder = new StringBuilder();
 
@@ -59,7 +79,7 @@ public class RunGame {
         String hyphens = hyphensBuilder.toString();
 
         // Printing the challenge sentence, and providing the user with some instructions
-        System.out.println("Your challenge sentence is:");
+        System.out.println("\nYour challenge sentence is:");
         System.out.println(hyphens);
         System.out.println(challengeString);
         System.out.println(hyphens);
@@ -102,9 +122,6 @@ public class RunGame {
             userScore = -1;
         }
 
-        System.out.println("Press Enter to Continue:");
-        Main.INPUT.nextLine();
-
         // *************************************************************************************************************
         // NOTE: sceneDone() must be called if you want your JavaFX scene to end properly
 
@@ -113,6 +130,7 @@ public class RunGame {
         }
     }
 
+    /** {@code percentCorrect} Calculates the percentage of words that the user got correct **/
     public static float percentCorrect(String challengeString, String userString) {
         String[] challengeWords = challengeString.split(" ");
         int numWords = challengeWords.length;
@@ -128,11 +146,12 @@ public class RunGame {
         return (float) numCorrect / numWords;
     }
 
-    // Calculating words per minute
+    /** {@code wordsPerMin} Calculates the user's words per minute **/
     public static float wordsPerMin(int numWords, float timeTakenSeconds) {
         return (float) ((numWords) / (timeTakenSeconds / 60.0));
     }
 
+    /** {@code printCountdown} prints a countdown in the console for the user **/
     public static void printCountdown(int start, int end, int pauseMillis) {
         if (start <= end) {
             return;
@@ -144,11 +163,10 @@ public class RunGame {
                 System.out.printf("%d, ", i);
                 Thread.sleep(pauseMillis);
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        } catch (InterruptedException ignored) {}
     }
 
+    /** {@code stringArrayContains} returns true if the given String is contained within the given String array **/
     public static boolean stringArrayContains(String[] strArr, String str) {
         for (String elem : strArr) {
             if (elem.equals(str)) {
