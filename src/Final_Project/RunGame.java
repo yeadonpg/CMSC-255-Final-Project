@@ -1,8 +1,15 @@
 package Final_Project;
 
+import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class RunGame {
@@ -10,17 +17,12 @@ public class RunGame {
     // userScore should be set to a valid number greater than or equal to 0
     // Failure to set userScore will result in the score not being saved
     public static double userScore = -1;
+    public static boolean storeScore;
 
-    /** {@code main} Declares JavaFX objects, giving them functionality and style
-     * - For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
+    /** {@code main} Declares JavaFX objects, giving them functionality and style **/
     public static void main(int userDifficulty) {
-        // DEMO - REPLACE WITH YOUR OWN CODE
-        GridPane root = new GridPane();
-        Button btn = new Button("Run Game -> End Menu");
-        btn.setOnAction(e -> sceneDone());
-        root.getChildren().add(btn);
+        GridPane gridPane = new GridPane();
 
-        // ***********************************************YOUR*CODE*HERE************************************************
         // Declaring the file path that the dictionary.txt is stored at:
         String fileName = "src/Final_Project/assets/dictionary.txt";
 
@@ -53,63 +55,124 @@ public class RunGame {
 
         // Generating a line of hyphens with the same length as the challenge sentence
         StringBuilder hyphensBuilder = new StringBuilder();
-        for (int i = 0; i < challengeString.length(); i++) {
+        for (int i = 0; i < challengeString.length() + 5; i++) {
             hyphensBuilder.append("-");
         }
         String hyphens = hyphensBuilder.toString();
 
-        // Printing the challenge sentence, and providing the user with some instructions
-        System.out.println("Your challenge sentence is:");
-        System.out.println(hyphens);
-        System.out.println(challengeString);
-        System.out.println(hyphens);
-        System.out.print("Press Enter, then wait for the countdown to begin typing!");
+        // Displaying the challenge sentence, and providing the user with some instructions
+        Label challengeLabel = new Label("Your challenge sentence is:\n\n" +
+                "" + hyphens + "\n" +
+                "" + challengeString + "\n" +
+                "" + hyphens + "\n\n" +
+                "Press the start button, then wait for the countdown to begin typing!\n" +
+                "Press Enter when done:\n");
 
-        // Waiting for the user to press enter before starting the countdown
-        Main.INPUT.nextLine();
-        // 5, 4, 3, 2, 1, Go!
-        printCountdown(5, 1, 1000);
-        System.out.println("Go!\n");
+        Button startGameButton = new Button("Start");
 
-        // Getting a start time, allowing the user to be timed
-        float startNanoTime = System.nanoTime();
+        final boolean[] userDoneTyping = {false};
 
-        // Getting user input
-        String userString = Main.INPUT.nextLine();
+        Label countDownLabel = new Label("");
 
-        // Calculating the time taken using the start time as reference
-        float timeTakenSeconds = (float) ((System.nanoTime() - startNanoTime) / (Math.pow(10, 9)));
+        TextField userTextBox = new TextField("Type Here");
+        userTextBox.setDisable(true);
 
-        // Calculating accuracy of word spelling
-        float userAccuracy = percentCorrect(challengeString, userString);
+        userTextBox.setOnMouseClicked(e -> {
+            userTextBox.setEditable(true);
+            userTextBox.setText("");
+        });
 
-        // Calculating Words Per Minute (WPM) Based on the time taken to finish
-        float userWPM = wordsPerMin(numWords, timeTakenSeconds);
+        userTextBox.setOnAction(e -> {
+            userTextBox.setDisable(true);
+            userDoneTyping[0] = true;
+        });
 
-        // Calculating score based on accuracy and words per minute
-        userScore = userWPM * userAccuracy;
+        Label statsLabel = new Label("");
 
-        // Printing calculated statistics and final score
-        System.out.println("\nFinished!");
-        System.out.printf("Time Elapsed: %.2fs\n", timeTakenSeconds);
-        System.out.println("Accuracy: " + userAccuracy * 100 + "%");
-        System.out.printf("Your WPM is: %.2f w/m\n", userWPM);
-        System.out.printf("Final Score: %.2f (WPM x Accuracy)\n\n", userScore);
+        // Initializing radio buttons for when user is done playing
+        HBox radioButtons = new HBox();
+        RadioButton yesChoice = new RadioButton("Yes");
+        yesChoice.setTextFill(Color.GREEN);
+        radioButtons.getChildren().add(yesChoice);
+        RadioButton noChoice = new RadioButton("No");
+        noChoice.setTextFill(Color.RED);
+        noChoice.setSelected(true);
+        radioButtons.getChildren().add(noChoice);
+        radioButtons.setVisible(false);
 
-        System.out.print("Do you want to save your score? (y/n): ");
-        String userChoice = Main.INPUT.nextLine();
-        if (userChoice.equalsIgnoreCase("n")) {
-            userScore = -1;
+        yesChoice.setOnAction(e -> {
+            if (yesChoice.isSelected()) {
+                storeScore = true;
+                noChoice.setSelected(false);
+            }
+        });
+
+        noChoice.setOnAction(e -> {
+            if (noChoice.isSelected()) {
+                storeScore = true;
+                yesChoice.setSelected(false);
+            }
+        });
+
+        // Initializing done button
+        Button done = new Button("Done");
+        done.setOnAction(e -> sceneDone());
+        done.setVisible(false);
+
+        startGameButton.setOnAction(e -> {
+            new AnimationTimer() {
+                float totalTime = 0;
+                long startNT = System.nanoTime();
+                @Override
+                public void handle(long cNT) {
+                    float deltaTime = (float) ((cNT - startNT) / 1000000000.0);
+                    if (deltaTime > 1) {
+                        totalTime += deltaTime;
+                        startNT = System.nanoTime();
+                        if (totalTime <= 5) {
+                            countDownLabel.setText((5 - (int) totalTime) + "\n");
+                        } else {
+                            countDownLabel.setText("Go!\n");
+                            userTextBox.setDisable(false);
+                        }
+                        // When the user is done typing; calculate the score & set the final value
+                        if (userDoneTyping[0]) {
+                            float timeTakenSeconds = totalTime - 5;
+                            float userAccuracy = percentCorrect(challengeString, userTextBox.getText());
+                            float userWPM = wordsPerMin(numWords, timeTakenSeconds);
+                            userScore = userWPM * userAccuracy;
+                            statsLabel.setText("Finished!\n" +
+                                    "" + String.format("Time Elapsed: %.2f", timeTakenSeconds) + "\n" +
+                                    "" + String.format("Accuracy: %.1f", userAccuracy * 100) + "%\n" +
+                                    "" + String.format("Your WPM is: %.2f w/m", userWPM) + "\n" +
+                                    "" + String.format("Final Score: %.2f (WPM x Accuracy)", userScore) + "\n\n" +
+                                    "Do you want to save your score?");
+                                    radioButtons.setVisible(true);
+                                    done.setVisible(true);
+                            this.stop();
+                        }
+                    }
+                }
+            }.start();
+        });
+
+        Node[][] nodes = new Node[][] {
+                {challengeLabel},
+                {countDownLabel, startGameButton},
+                {userTextBox},
+                {statsLabel},
+                {radioButtons, done}
+        };
+
+        // Adding all nodes to the scene
+        for (int i = 0; i < nodes.length; i++) {
+            for (int j = 0; j < nodes[i].length; j++) {
+                gridPane.add(nodes[i][j], j, i);
+            }
         }
 
-        System.out.println("Press Enter to Continue:");
-        Main.INPUT.nextLine();
-
-        // *************************************************************************************************************
-        // NOTE: sceneDone() must be called if you want your JavaFX scene to end properly
-
         if (!Main.runConsole) {
-            finish(Main.STAGE, root);
+            finish(Main.STAGE, gridPane);
         }
     }
 
@@ -131,22 +194,6 @@ public class RunGame {
     // Calculating words per minute
     public static float wordsPerMin(int numWords, float timeTakenSeconds) {
         return (float) ((numWords) / (timeTakenSeconds / 60.0));
-    }
-
-    public static void printCountdown(int start, int end, int pauseMillis) {
-        if (start <= end) {
-            return;
-        }
-
-        try {
-            Thread.sleep(pauseMillis);
-            for (int i = start; i >= end; i--) {
-                System.out.printf("%d, ", i);
-                Thread.sleep(pauseMillis);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public static boolean stringArrayContains(String[] strArr, String str) {

@@ -21,7 +21,7 @@ public class Main extends Application {
 
     /** Whether to run the game in the console, or the in the GUI **/
     // TODO Change to false when ready to switch over to GUI
-    public static boolean runConsole = true;
+    public static boolean runConsole = false;
 
     /** Width of every scene in the application **/
     public static int WIDTH = 800;
@@ -60,43 +60,54 @@ public class Main extends Application {
 
     /** {@code start} Contains the main loop; handles scene switching **/
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) {
         // Giving the package-wide STAGE a value; it will be referenced by all scenes contained in the window
         STAGE = stage;
 
         AnimationTimer GuiHandler = new AnimationTimer () {
+            long startNT = System.nanoTime();
             @Override
             public void handle(long cNT) {
-                // Handling scenes in a manner that allows them to complete chronologically
-                userQuit = false;
-                if (firstTimeScene[0]) {
-                    System.out.println("[DEBUG] Starting Main Menu");
-                    MainMenu.main();
-                    firstTimeScene[0] = false;
-                }
-                if (MainMenu.DONE) {
-                    userDifficulty = MainMenu.userDifficulty;
-                    userName = MainMenu.userName;
-                    if (firstTimeScene[1]) {
-                        System.out.println("[DEBUG] Starting Run Game");
-                        RunGame.main(userDifficulty);
-                        firstTimeScene[1] = false;
+
+                double deltaTime = (cNT - startNT) / 1000000000.0;
+
+                // Handling scenes every 0.5 seconds to save performance
+                if (deltaTime > 0.5) {
+                    startNT = cNT;
+                    // Handling scenes in a manner that allows them to complete chronologically
+                    userQuit = false;
+                    if (firstTimeScene[0]) {
+                        System.out.println("[DEBUG] Starting Main Menu");
+                        MainMenu.main();
+                        firstTimeScene[0] = false;
                     }
-                    if (RunGame.DONE) {
+                    if (MainMenu.DONE) {
+                        userDifficulty = MainMenu.userDifficulty;
+                        userName = MainMenu.userName;
+                        if (firstTimeScene[1]) {
+                            System.out.println("[DEBUG] Starting Run Game");
+                            RunGame.main(userDifficulty);
+                            firstTimeScene[1] = false;
+                        }
+                    }
+                    if (MainMenu.DONE && RunGame.DONE) {
                         userScore = RunGame.userScore;
                         if (firstTimeScene[2]) {
+                            if (RunGame.storeScore) {
+                                System.out.println("[DEBUG] Storing User Score");
+                                storeToFile(userName, userDifficulty, userScore);
+                            }
                             System.out.println("[DEBUG] Starting End Menu");
-                            storeToFile(userName, userDifficulty, userScore);
                             EndMenu.main();
                             firstTimeScene[2] = false;
                         }
-                        if (EndMenu.DONE) {
-                            userQuit = EndMenu.userQuit;
-                        }
                     }
-                }
-                if (userQuit) {
-                    stage.close();
+                    if (EndMenu.DONE) {
+                        userQuit = EndMenu.userQuit;
+                    }
+                    if (userQuit) {
+                        stage.close();
+                    }
                 }
             }
         };
@@ -104,32 +115,6 @@ public class Main extends Application {
             GuiHandler.start();
             stage.show();
         }
-        // TODO Remove the code below when ready to switch over to GUI
-        // Console scenes automatically complete chronologically
-        while (!EndMenu.userQuit && runConsole) {
-            // Starting the main menu
-            MainMenu.main();
-            // Getting stored values from the main menu
-            userName = MainMenu.userName;
-            userDifficulty = MainMenu.userDifficulty;
-
-            // Starting the game
-            RunGame.main(userDifficulty);
-            // Getting the stored value from the game
-            userScore = RunGame.userScore;
-
-            if (userName != null && userDifficulty != -1 && userScore != -1) {
-                // If the user-entered values aren't default values, store to file
-                // The correct filename is automatically chosen based on the difficulty
-                // If the difficulty is invalid, the score and username will be stored under the default difficulty
-                storeToFile(userName, userDifficulty, userScore);
-            }
-
-            // Starting the end menu
-            EndMenu.main();
-        }
-        // When the loop ends, the program will exit
-        System.exit(0);
     }
 
     /** {@code resetScenes} Resets the scenes; effectively returning the user back to the Main Menu **/

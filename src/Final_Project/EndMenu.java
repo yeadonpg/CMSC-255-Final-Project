@@ -3,6 +3,10 @@ package Final_Project;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class EndMenu {
@@ -12,38 +16,51 @@ public class EndMenu {
     /** {@code main} Declares JavaFX objects, giving them functionality and style
      * - For MILESTONE 2, the game only needs to be implemented in the console, JavaFX isn't needed until then **/
     public static void main() {
-        // DEMO
         GridPane root = new GridPane();
-        Button btnRestart = new Button("End Menu -> Main Menu");
+
+        Text highScoreTitle = new Text("Typing Contest");
+        highScoreTitle.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 40));
+        highScoreTitle.setFill(Color.RED);
+        root.add(highScoreTitle, 0, 0, 3, 1);
+
+        Text highScoreSubTitle = new Text("High Scores");
+        highScoreSubTitle.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 30));
+        highScoreSubTitle.setFill(Color.GREEN);
+        root.add(highScoreSubTitle, 0, 1, 3, 1);
+
+        Text difficultyEasy = new Text("Easy");
+        difficultyEasy.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 30));
+        difficultyEasy.setFill(Color.WHITE);
+        root.add(difficultyEasy, 0, 2);
+
+        Text difficultyIntermediate = new Text("Intermediate");
+        difficultyIntermediate.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 30));
+        difficultyIntermediate.setFill(Color.WHITE);
+        root.add(difficultyIntermediate, 1, 2);
+
+        Text difficultyHard = new Text("Hard");
+        difficultyHard.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 30));
+        difficultyHard.setFill(Color.WHITE);
+        root.add(difficultyHard, 2, 2);
+
+
+        Button btnRestart = new Button("Main Menu");
         Button btnQuit = new Button("End Program");
         btnRestart.setOnAction(e -> sceneDone(false));
         btnQuit.setOnAction(e -> sceneDone(true));
         root.getChildren().add(btnRestart);
         root.getChildren().add(btnQuit);
 
-        System.out.println("                             \"Typing Contest\"                          ");
-        System.out.println("                                Best Scores:                            ");
-        System.out.println("|----------Easy----------||------Intermediate------||----------Hard----------|");
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 3; j++) {
                 int ranking = i + 1;
-                //Reading the example scores from file
                 String[] line = Main.readLineFromFile(j, i);
-                // Line format: [0] = Username, [1] = Difficulty, [2] = Score
                 double score = Double.parseDouble(line[2]);
-                // Using print formatting to create a nice looking output
-                System.out.printf("| " + ranking + ". %s: %.1f |", line[0], score);
+                Text scores = new Text(Double.toString(score));
+                scores.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 25));
+                scores.setFill(Color.YELLOW);
+                root.add(scores, j, i + 3);
             }
-            System.out.println();
-        }
-        System.out.println("|----------------------------------------------------------------------------|");
-
-        // Asking the user whether they want to quit or not, pressing enter will return the user back to the main menu
-        System.out.println("Enter \"quit\" to quit, to replay the game press Enter");
-        // Using Main.INPUT as a project-wide scanner, using more than one scanner in a program can result in an error
-        String quitAnswer = Main.INPUT.nextLine();
-        if (quitAnswer.trim().equalsIgnoreCase("quit")) {
-            userQuit = true;
         }
 
         if (!Main.runConsole) {
