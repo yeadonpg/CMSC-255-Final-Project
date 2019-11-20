@@ -176,6 +176,7 @@ public class RunGame {
         }
     }
 
+    /** {@code percentCorrect} Calculates the percentage of words that the user got correct **/
     public static float percentCorrect(String challengeString, String userString) {
         String[] challengeWords = challengeString.split(" ");
         int numWords = challengeWords.length;
@@ -191,7 +192,7 @@ public class RunGame {
         return (float) numCorrect / numWords;
     }
 
-    // Calculating words per minute
+    /** {@code wordsPerMin} Calculates the user's words per minute **/
     public static float wordsPerMin(int numWords, float timeTakenSeconds) {
         return (float) ((numWords) / (timeTakenSeconds / 60.0));
     }
