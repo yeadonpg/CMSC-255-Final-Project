@@ -65,8 +65,6 @@ public class EndMenu {
         finish(Main.STAGE, root);
     }
 
-
-
     /** {@code finish} completes the JavaFX scene, sets the scene to the stage **/
     private static void finish(Stage stage, GridPane root) {
         // Creating the scene
