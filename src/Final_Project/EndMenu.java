@@ -53,7 +53,6 @@ public class EndMenu {
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 3; j++) {
-                int ranking = i + 1;
                 String[] line = Main.readLineFromFile(j, i);
                 double score = Double.parseDouble(line[2]);
                 Text scores = new Text(Double.toString(score));
