@@ -170,10 +170,7 @@ public class RunGame {
                 gridPane.add(nodes[i][j], j, i);
             }
         }
-
-        if (!Main.runConsole) {
-            finish(Main.STAGE, gridPane);
-        }
+        finish(Main.STAGE, gridPane);
     }
 
     /** {@code percentCorrect} Calculates the percentage of words that the user got correct **/

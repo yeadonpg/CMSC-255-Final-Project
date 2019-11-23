@@ -62,10 +62,7 @@ public class EndMenu {
                 root.add(scores, j, i + 3);
             }
         }
-
-        if (!Main.runConsole) {
-            finish(Main.STAGE, root);
-        }
+        finish(Main.STAGE, root);
     }
 
 

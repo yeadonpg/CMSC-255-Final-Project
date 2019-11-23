@@ -102,10 +102,7 @@ public class MainMenu {
                 gridPane.add(nodes[i][j], j, i);
             }
         }
-
-        if (!Main.runConsole) {
-            finish(Main.STAGE, gridPane);
-        }
+        finish(Main.STAGE, gridPane);
     }
 
     /** {@code finish} completes the JavaFX scene, sets the scene to the stage **/

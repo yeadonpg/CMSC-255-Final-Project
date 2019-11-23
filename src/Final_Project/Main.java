@@ -19,10 +19,6 @@ import java.util.Scanner;
 @SuppressWarnings("WeakerAccess")
 public class Main extends Application {
 
-    /** Whether to run the game in the console, or the in the GUI **/
-    // TODO Change to false when ready to switch over to GUI
-    public static boolean runConsole = false;
-
     /** Width of every scene in the application **/
     public static int WIDTH = 800;
     /** Height of every scene in the application **/
@@ -30,10 +26,6 @@ public class Main extends Application {
     /** <h1>Package-wide stage for scenes</h1>
      * This will be used for staging every scene in the package **/
     public static Stage STAGE;
-
-    /** <h1>USE THIS FOR GETTING USER INPUT</h1>
-     * Scanner will be removed eventually; after the game has been moved away from the console **/
-    public static Scanner INPUT = new Scanner(System.in);
 
     /** Will be given a value after the MainMenu completes **/
     private static int userDifficulty;
@@ -111,10 +103,8 @@ public class Main extends Application {
                 }
             }
         };
-        if (!runConsole) {
-            GuiHandler.start();
-            stage.show();
-        }
+        GuiHandler.start();
+        stage.show();
     }
 
     /** {@code resetScenes} Resets the scenes; effectively returning the user back to the Main Menu **/
