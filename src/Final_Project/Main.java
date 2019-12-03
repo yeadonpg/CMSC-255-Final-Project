@@ -69,7 +69,6 @@ public class Main extends Application {
                     // Handling scenes in a manner that allows them to complete chronologically
                     userQuit = false;
                     if (firstTimeScene[0]) {
-                        System.out.println("[DEBUG] Starting Main Menu");
                         MainMenu.main();
                         firstTimeScene[0] = false;
                     }
@@ -77,7 +76,6 @@ public class Main extends Application {
                         userDifficulty = MainMenu.userDifficulty;
                         userName = MainMenu.userName;
                         if (firstTimeScene[1]) {
-                            System.out.println("[DEBUG] Starting Run Game");
                             RunGame.main(userDifficulty);
                             firstTimeScene[1] = false;
                         }
@@ -86,10 +84,8 @@ public class Main extends Application {
                         userScore = RunGame.userScore;
                         if (firstTimeScene[2]) {
                             if (RunGame.storeScore) {
-                                System.out.println("[DEBUG] Storing User Score");
                                 storeToFile(userName, userDifficulty, userScore);
                             }
-                            System.out.println("[DEBUG] Starting End Menu");
                             EndMenu.main();
                             firstTimeScene[2] = false;
                         }
