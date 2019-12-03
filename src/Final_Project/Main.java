@@ -118,18 +118,7 @@ public class Main extends Application {
     /** {@code storeToFile} Stores username and score in HIGH_SCORES_FILE_PATH **/
     public static void storeToFile(String userName, int userDifficulty, double userScore) {
         String csv = "\n" + userName + "," + userDifficulty + "," + userScore;
-        String fileName;
-        switch (userDifficulty) {
-            case 1:
-                fileName = INTERMEDIATE_FILE_PATH;
-                break;
-            case 2:
-                fileName = HARD_FILE_PATH;
-                break;
-            default :
-                fileName = EASY_FILE_PATH;
-                break;
-        }
+        String fileName = getFileNameFromDifficulty(userDifficulty);
         appendToFile(csv, fileName);
     }
 
@@ -204,6 +193,19 @@ public class Main extends Application {
 
     /** {@code readLineFromFile} Returns a string list containing the userName, userDifficulty, & userScore **/
     public static String[] readLineFromFile(int difficulty, int index) {
+        String fileName = getFileNameFromDifficulty(difficulty);
+        String line = readLineFromFile(fileName, index);
+        return line.split(",");
+    }
+
+    /** {@code readLineFromFile} Returns the string at a given index in the given filename **/
+    public static String readLineFromFile(String fileName, int index) {
+        String[] lines = readEntireFile(fileName);
+        return lines[index];
+    }
+
+    /** {@code getFileNameFromDifficulty} Does what it says on the tin **/
+    private static String getFileNameFromDifficulty(int difficulty) {
         String fileName;
         switch (difficulty) {
             case 1:
@@ -216,13 +218,6 @@ public class Main extends Application {
                 fileName = EASY_FILE_PATH;
                 break;
         }
-        String line = readLineFromFile(fileName, index);
-        return line.split(",");
-    }
-
-    /** {@code readLineFromFile} Returns the string at a given index in the given filename **/
-    public static String readLineFromFile(String fileName, int index) {
-        String[] lines = readEntireFile(fileName);
-        return lines[index];
+        return fileName;
     }
 }
