@@ -11,10 +11,10 @@ import java.util.Scanner;
 /**
  * <h1>Typing Contest</h1>
  * <b>Description:</b>
- * TODO
+ * Typing Contest! Compete against your high scores to improve your typing ability
  * @author Patrick Yeadon, Yusuf Niamati, Austin Escobedo, Lokendra Tamang
- * @version TODO
- * @since TODO
+ * @version 1.0
+ * @since Dec. 5, 2019
  *  **/
 @SuppressWarnings("WeakerAccess")
 public class Main extends Application {

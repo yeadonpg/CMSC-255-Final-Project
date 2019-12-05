@@ -20,45 +20,45 @@ public class EndMenu {
 
         Text highScoreTitle = new Text("Typing Contest");
         highScoreTitle.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 40));
-        highScoreTitle.setFill(Color.RED);
-        root.add(highScoreTitle, 0, 0, 3, 1);
+        highScoreTitle.setFill(Color.BLACK);
+        root.add(highScoreTitle, 0, 1, 3, 1);
 
         Text highScoreSubTitle = new Text("High Scores");
         highScoreSubTitle.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 30));
         highScoreSubTitle.setFill(Color.GREEN);
-        root.add(highScoreSubTitle, 0, 1, 3, 1);
+        root.add(highScoreSubTitle, 0, 2, 3, 1);
 
         Text difficultyEasy = new Text("Easy");
         difficultyEasy.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 30));
-        difficultyEasy.setFill(Color.WHITE);
-        root.add(difficultyEasy, 0, 2);
+        difficultyEasy.setFill(Color.GREEN);
+        root.add(difficultyEasy, 0, 3);
 
         Text difficultyIntermediate = new Text("Intermediate");
         difficultyIntermediate.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 30));
-        difficultyIntermediate.setFill(Color.WHITE);
-        root.add(difficultyIntermediate, 1, 2);
+        difficultyIntermediate.setFill(Color.ORANGE);
+        root.add(difficultyIntermediate, 1, 3);
 
         Text difficultyHard = new Text("Hard");
         difficultyHard.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 30));
-        difficultyHard.setFill(Color.WHITE);
-        root.add(difficultyHard, 2, 2);
+        difficultyHard.setFill(Color.RED);
+        root.add(difficultyHard, 2, 3);
 
 
-        Button btnRestart = new Button("Main Menu");
+        Button btnRestart = new Button("Try Again?");
         Button btnQuit = new Button("End Program");
         btnRestart.setOnAction(e -> sceneDone(false));
         btnQuit.setOnAction(e -> sceneDone(true));
-        root.getChildren().add(btnRestart);
-        root.getChildren().add(btnQuit);
+        root.add(btnRestart, 0, 0);
+        root.add(btnQuit, 1, 0);
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 3; j++) {
                 String[] line = Main.readLineFromFile(j, i);
                 double score = Double.parseDouble(line[2]);
-                Text scores = new Text(Double.toString(score));
+                Text scores = new Text(String.format("%.1f", score));
                 scores.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 25));
-                scores.setFill(Color.YELLOW);
-                root.add(scores, j, i + 3);
+                scores.setFill(Color.BLACK);
+                root.add(scores, j, i + 4);
             }
         }
         finish(Main.STAGE, root);
