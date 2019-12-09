@@ -55,7 +55,7 @@ public class EndMenu {
             for (int j = 0; j < 3; j++) {
                 String[] line = Main.readLineFromFile(j, i);
                 double score = Double.parseDouble(line[2]);
-                Text scores = new Text(String.format("%.1f", score));
+                Text scores = new Text(String.format("%s: %.1f ", line[0], score));
                 scores.setFont(Font.font("Times New Roman", FontWeight.NORMAL, 25));
                 scores.setFill(Color.BLACK);
                 root.add(scores, j, i + 4);
